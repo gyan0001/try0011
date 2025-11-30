@@ -16,7 +16,7 @@ const app = express();
 const PORT = process.env.PORT || 3000;  // ← FIXED: For hosting platforms
 
 // Serve static files from public directory
-app.use(express.static(path.join(__dirname)));
+app.use(express.static(path.join(__dirname, '/')));
 app.use(bodyParser.json());
 
 // Store conversation starters to track if it's the first message
@@ -188,5 +188,6 @@ app.get('*', (req, res) => {
 setInterval(() => {
   conversationStarters.clear();
 }, 30 * 60 * 1000); // Clear every 30 minutes
+
 
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
