@@ -180,7 +180,12 @@ app.get('/health', (req, res) => {
 });
 
 // ← ADD: Handle all other routes
+pp.use(express.static(path.join(__dirname, '/')));
+
+// fallback to root index.html for client routing
 app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'index.html'));
+});
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
@@ -191,3 +196,4 @@ setInterval(() => {
 
 
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+
